@@ -1,0 +1,39 @@
+#include <stdio.h>
+
+int main() {
+    int n;
+    int arr[100];
+    int current_sum, max_sum;
+
+    // Read number of elements
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
+
+    // Read array elements
+    printf("Enter array elements:\n");
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    // Initialize sums
+    current_sum = arr[0];
+    max_sum = arr[0];
+
+    // Apply Kadane's Algorithm
+    for (int i = 1; i < n; i++) {
+        if (current_sum < 0) {
+            current_sum = arr[i];
+        } else {
+            current_sum = current_sum + arr[i];
+        }
+
+        if (current_sum > max_sum) {
+            max_sum = current_sum;
+        }
+    }
+
+    // Display result
+    printf("Maximum Subarray Sum: %d\n", max_sum);
+
+    return 0;
+}
